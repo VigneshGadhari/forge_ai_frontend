@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import './Editor.css';
-import { uiuxAgents } from '../data/uiuxAgents';
+import { allAgents } from '../data';
 import Checkout from './Checkout';
 
 const AgentDialog = ({ onClose, onSelect, existingAgents }) => {
     const [searchTerm, setSearchTerm] = useState('');
-    
-    const filteredAgents = uiuxAgents.filter(agent =>
-        !existingAgents.includes(agent.id) &&
-        (agent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        agent.description.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
+    const [selectedCategories, setSelectedCategories] = useState(['UI/UX Design Agents']);
+
+    const handleCategoryToggle = (category) => {
+        setSelectedCategories(prev => 
+            prev.includes(category) ? prev.filter(c => c !== category) : [...prev, category]
+        );
+    };
+
+    const filteredAgents = Object.values(allAgents)
+        .flat()
+        .filter(agent => 
+            (selectedCategories.includes(agent.category) || selectedCategories.length === 0) &&
+            (agent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            agent.description.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
 
     return (
         <div className="dialog-overlay" onClick={onClose}>
@@ -26,6 +35,17 @@ const AgentDialog = ({ onClose, onSelect, existingAgents }) => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="dialog-search"
                 />
+                <div className="category-chips">
+                    {Object.keys(allAgents).map(category => (
+                        <span 
+                            key={category} 
+                            className={`chip ${selectedCategories.includes(category) ? 'selected' : ''}`}
+                            onClick={() => handleCategoryToggle(category)}
+                        >
+                            {category}
+                        </span>
+                    ))}
+                </div>
                 <div className="agent-list">
                     {filteredAgents.map(agent => (
                         <div 
@@ -114,10 +134,17 @@ const AgentDetails = ({ agent, onClose }) => {
                         ))}
                     </div>
                 </div>
-                <div className="detail-group">
-                    <label>Accuracy</label>
-                    <p>{agent.features.accuracy}</p>
-                </div>
+                {Object.keys(agent.features).map((key) => {
+                    if (!['input', 'output', 'useCase', 'pricing', 'platforms', 'integration'].includes(key)) {
+                        return (
+                            <div className="detail-group" key={key}>
+                                <label>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
+                                <p>{agent.features[key]}</p>
+                            </div>
+                        );
+                    }
+                    return null;
+                })}
                 <div className="detail-group">
                     <label>Active Users</label>
                     <p>{agent.features.users.toLocaleString()}</p>
@@ -215,11 +242,16 @@ const Editor = () => {
     const [showCheckout, setShowCheckout] = useState(false);
 
     const addAgentToWorkflow = (agent) => {
-        const newNode = {
-            id: `${agent.id}-${Date.now()}`,
-            data: { ...agent }
-        };
-        setNodes(prev => [...prev, newNode]);
+        const exists = nodes.some(node => node.data.id === agent.id);
+        if (!exists) {
+            const newNode = {
+                id: `${agent.id}-${Date.now()}`,
+                data: { ...agent }
+            };
+            setNodes(prev => [...prev, newNode]);
+        } else {
+            alert(`${agent.name} is already added to the workflow.`);
+        }
     };
 
     const handleDeleteNode = (nodeId) => {
@@ -287,7 +319,9 @@ const Editor = () => {
                                     data={node.data}
                                     onConnect={handleConnectClick}
                                     onDelete={() => handleDeleteNode(node.id)}
-                                    onSelect={setSelectedAgent}
+                                    onSelect={(agent) => {
+                                        setSelectedAgent(agent);
+                                    }}
                                 />
                             ))}
                         </div>

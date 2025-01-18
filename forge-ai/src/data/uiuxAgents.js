@@ -14,9 +14,8 @@ export const uiuxAgents = [
             },
             platforms: ['Web', 'Windows', 'macOS'],
             integration: ['Figma', 'Adobe XD'],
-            accuracy: '95%',
-            rating: 4.7,
-            users: 1200
+            users: 1200,
+            me: "okk"
         },
         documentation: 'https://docs.uizard.io',
         tutorial: 'https://tutorial.uizard.io'
@@ -36,7 +35,6 @@ export const uiuxAgents = [
             },
             platforms: ['Web', 'Desktop'],
             integration: ['Adobe XD', 'Sketch'],
-            accuracy: 'High',
             rating: 4.8,
             users: 2500
         },
