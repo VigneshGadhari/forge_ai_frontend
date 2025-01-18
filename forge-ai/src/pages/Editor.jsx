@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './Editor.css';
 import { allAgents } from '../data';
 import Checkout from './Checkout';
@@ -236,10 +237,22 @@ const SubscriptionSummary = ({ agents, onCheckout }) => {
 };
 
 const Editor = () => {
+    const location = useLocation();
     const [nodes, setNodes] = useState([]);
     const [showDialog, setShowDialog] = useState(false);
     const [selectedAgent, setSelectedAgent] = useState(null);
     const [showCheckout, setShowCheckout] = useState(false);
+
+    // Handle preselected agents from workflows
+    useEffect(() => {
+        if (location.state?.preselectedAgents) {
+            const preselectedNodes = location.state.preselectedAgents.map(agent => ({
+                id: `${agent.id}-${Date.now()}`,
+                data: { ...agent }
+            }));
+            setNodes(preselectedNodes);
+        }
+    }, [location.state]);
 
     const addAgentToWorkflow = (agent) => {
         const exists = nodes.some(node => node.data.id === agent.id);

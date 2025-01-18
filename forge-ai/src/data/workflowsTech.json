@@ -1,162 +1,59 @@
-[
-  {
-    "id": 1,
-    "name": "Website Creation",
-    "description": "Find the best AI agents for creating a professional website.",
-    "thumbnail": "https://via.placeholder.com/150",
-    "fields": {
-      "Tool Name": "WebBuilder AI",
-      "Category": "Website Development",
-      "Description": "AI tool for building websites quickly.",
-      "Input Type": "Text, Images",
-      "Output Type": "Website",
-      "Primary Use Case": "Website Creation",
-      "Pricing Model": "Subscription",
-      "Supported Platforms": "Web",
-      "Integration Options": "CMS, E-commerce",
-      "API Availability": "Yes",
-      "Documentation Link": "https://example.com/docs",
-      "Performance Metrics": "Uptime, Load Time",
-      "Limitations": "Limited templates",
-      "Real-world Examples": "E-commerce sites, Blogs",
-      "User Rating": 4.5,
-      "Review Count": 120,
-      "Learning Resources": "Tutorials, Webinars",
-      "Setup Complexity": "Easy",
-      "Automation Features": "Auto-deploy",
-      "Output Compatibility": "HTML, CSS",
-      "Data Security Level": "High",
-      "Market Trends": "Growing",
-      "Last Updated": "2023-01-15",
-      "Image Link": "https://via.placeholder.com/150"
-    }
-  },
-  {
-    "id": 2,
-    "name": "Data Analysis",
-    "description": "Discover AI tools for data analysis and reporting.",
-    "thumbnail": "https://via.placeholder.com/150",
-    "fields": {
-      "Tool Name": "DataAnalyzer AI",
-      "Category": "Data Science",
-      "Description": "AI tool for analyzing large datasets.",
-      "Input Type": "CSV, JSON",
-      "Output Type": "Reports",
-      "Primary Use Case": "Data Analysis",
-      "Pricing Model": "Pay-per-use",
-      "Supported Platforms": "Web, Desktop",
-      "Integration Options": "BI Tools",
-      "API Availability": "Yes",
-      "Documentation Link": "https://example.com/docs",
-      "Performance Metrics": "Speed, Accuracy",
-      "Limitations": "Data size limits",
-      "Real-world Examples": "Business Reports, Insights",
-      "User Rating": 4.7,
-      "Review Count": 95,
-      "Learning Resources": "Webinars, Guides",
-      "Setup Complexity": "Medium",
-      "Automation Features": "Scheduled Reports",
-      "Output Compatibility": "PDF, Excel",
-      "Data Security Level": "Medium",
-      "Market Trends": "Stable",
-      "Last Updated": "2023-02-10",
-      "Image Link": "https://via.placeholder.com/150"
-    }
-  },
-  {
-    "id": 3,
-    "name": "Social Media Management",
-    "description": "Manage your social media presence with AI tools.",
-    "thumbnail": "https://via.placeholder.com/150",
-    "fields": {
-      "Tool Name": "SocialManager AI",
-      "Category": "Social Media",
-      "Description": "AI tool for scheduling and managing posts.",
-      "Input Type": "Text, Images",
-      "Output Type": "Scheduled Posts",
-      "Primary Use Case": "Social Media Management",
-      "Pricing Model": "Monthly Subscription",
-      "Supported Platforms": "Web, Mobile",
-      "Integration Options": "Social Networks",
-      "API Availability": "Yes",
-      "Documentation Link": "https://example.com/docs",
-      "Performance Metrics": "Engagement, Reach",
-      "Limitations": "Limited platforms",
-      "Real-world Examples": "Marketing Campaigns",
-      "User Rating": 4.3,
-      "Review Count": 80,
-      "Learning Resources": "Tutorials, Blogs",
-      "Setup Complexity": "Easy",
-      "Automation Features": "Auto-posting",
-      "Output Compatibility": "Social Media Formats",
-      "Data Security Level": "High",
-      "Market Trends": "Growing",
-      "Last Updated": "2023-03-05",
-      "Image Link": "https://via.placeholder.com/150"
-    }
-  },
-  {
-    "id": 4,
-    "name": "SEO Optimization",
-    "description": "Optimize your website's SEO with AI tools.",
-    "thumbnail": "https://via.placeholder.com/150",
-    "fields": {
-      "Tool Name": "SEOOptimizer AI",
-      "Category": "SEO",
-      "Description": "AI tool for improving website SEO.",
-      "Input Type": "Website URL",
-      "Output Type": "SEO Report",
-      "Primary Use Case": "SEO Optimization",
-      "Pricing Model": "Freemium",
-      "Supported Platforms": "Web",
-      "Integration Options": "CMS",
-      "API Availability": "Yes",
-      "Documentation Link": "https://example.com/docs",
-      "Performance Metrics": "Keyword Rankings",
-      "Limitations": "Limited features in free version",
-      "Real-world Examples": "Blogs, E-commerce",
-      "User Rating": 4.6,
-      "Review Count": 110,
-      "Learning Resources": "Guides, Webinars",
-      "Setup Complexity": "Medium",
-      "Automation Features": "Keyword Tracking",
-      "Output Compatibility": "Reports",
-      "Data Security Level": "Medium",
-      "Market Trends": "Stable",
-      "Last Updated": "2023-04-01",
-      "Image Link": "https://via.placeholder.com/150"
-    }
-  },
-  {
-    "id": 5,
-    "name": "Content Creation",
-    "description": "Generate high-quality content with AI tools.",
-    "thumbnail": "https://via.placeholder.com/150",
-    "fields": {
-      "Tool Name": "ContentCreator AI",
-      "Category": "Content Writing",
-      "Description": "AI tool for generating articles and blogs.",
-      "Input Type": "Text Prompts",
-      "Output Type": "Articles",
-      "Primary Use Case": "Content Creation",
-      "Pricing Model": "Subscription",
-      "Supported Platforms": "Web",
-      "Integration Options": "CMS",
-      "API Availability": "Yes",
-      "Documentation Link": "https://example.com/docs",
-      "Performance Metrics": "Quality, Readability",
-      "Limitations": "Limited topics",
-      "Real-world Examples": "Blogs, Marketing Content",
-      "User Rating": 4.8,
-      "Review Count": 150,
-      "Learning Resources": "Tutorials, Examples",
-      "Setup Complexity": "Easy",
-      "Automation Features": "Auto-publishing",
-      "Output Compatibility": "HTML, Markdown",
-      "Data Security Level": "High",
-      "Market Trends": "Growing",
-      "Last Updated": "2023-05-10",
-      "Image Link": "https://via.placeholder.com/150"
-    }
-  }
-]
+{
+    "workflows": [
+        {
+            "id": "web-dev-workflow",
+            "name": "Web Development Suite",
+            "description": "Complete web development workflow with UI design, code generation, and deployment tools",
+            "thumbnail": "/images/web-dev-workflow.png",
+            "category": "Development",
+            "agents": [
+                {
+                    "id": "figma",
+                    "category": "UI/UX Design Agents"
+                },
+                {
+                    "id": "github-copilot",
+                    "category": "Code Generation Agents"
+                },
+                {
+                    "id": "postman",
+                    "category": "API Management Tools"
+                }
+            ]
+        },
+        {
+            "id": "data-analytics-workflow",
+            "name": "Data Analytics Pipeline",
+            "description": "End-to-end data analytics workflow with visualization and reporting tools",
+            "thumbnail": "/images/data-analytics.png",
+            "category": "Analytics",
+            "agents": [
+                {
+                    "id": "tableau",
+                    "category": "Data Visualization Tools"
+                },
+                {
+                    "id": "powerbi",
+                    "category": "Data Visualization Tools"
+                }
+            ]
+        },
+        {
+            "id": "ui-design-workflow",
+            "name": "UI/UX Design Suite",
+            "description": "Complete UI/UX design workflow with prototyping and collaboration tools",
+            "thumbnail": "/images/ui-design.png",
+            "category": "Design",
+            "agents": [
+                {
+                    "id": "figma",
+                    "category": "UI/UX Design Agents"
+                },
+                {
+                    "id": "tableau",
+                    "category": "Data Visualization Tools"
+                }
+            ]
+        }
+    ]
+}
