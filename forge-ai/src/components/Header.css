@@ -1,0 +1,17 @@
+/* src/components/Header.css */
+.header {
+    text-align: center;
+    padding: 20px;
+    background-color: #ff6f20; /* Primary color */
+    color: #ffffff; /* Text color */
+}
+
+.header-title {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.header-subtitle {
+    font-size: 1.2em;
+    margin: 0;
+}

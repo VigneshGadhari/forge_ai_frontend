@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Content Creation",
+    "description": "Generate high-quality content for blogs and articles.",
+    "thumbnail": "https://static1.anpoimages.com/wordpress/wp-content/uploads/2024/01/the-meta-logo-appears-on-a-white-background.jpg",
+    "link": "/workflows/content-creation"
+  },
+  {
+    "id": 2,
+    "name": "Data Analysis",
+    "description": "Analyze data and generate insightful reports.",
+    "thumbnail": "https://static1.anpoimages.com/wordpress/wp-content/uploads/2024/01/the-meta-logo-appears-on-a-white-background.jpg",
+    "link": "/workflows/data-analysis"
+  },
+  {
+    "id": 3,
+    "name": "Social Media Management",
+    "description": "Manage and schedule posts across various platforms.",
+    "thumbnail": "https://static1.anpoimages.com/wordpress/wp-content/uploads/2024/01/the-meta-logo-appears-on-a-white-background.jpg",
+    "link": "/workflows/social-media-management"
+  },
+  {
+    "id": 4,
+    "name": "SEO Optimization",
+    "description": "Optimize your website for better search engine rankings.",
+    "thumbnail": "https://static1.anpoimages.com/wordpress/wp-content/uploads/2024/01/the-meta-logo-appears-on-a-white-background.jpg",
+    "link": "/workflows/seo-optimization"
+  }
+]
