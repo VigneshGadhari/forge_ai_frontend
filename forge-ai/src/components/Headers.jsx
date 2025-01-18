@@ -1,11 +1,14 @@
 // src/components/Header.jsx
 import React from 'react';
 import './Header.css'; // Import the CSS for styling
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome
 
 const Header = () => {
     return (
         <header className="header">
-            <h1 className="header-title">AI Agent Marketplace</h1>
+            <h1 className="header-title">
+                <i className="fas fa-robot"></i> AI Agent Marketplace
+            </h1>
             <p className="header-subtitle">Find the best AI agents for your needs</p>
         </header>
     );

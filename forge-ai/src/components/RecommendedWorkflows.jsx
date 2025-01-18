@@ -1,6 +1,6 @@
 // src/components/RecommendedWorkflows.jsx
 import React, { useEffect, useState } from 'react';
-import workflowsData from '../data/workflow.json'; // Import dummy data
+import workflowsData from '../data/workflowsTech.json'; // Import dummy data
 import './RecommendedWorkflows.css'; // Import the CSS for styling
 
 const RecommendedWorkflows = () => {

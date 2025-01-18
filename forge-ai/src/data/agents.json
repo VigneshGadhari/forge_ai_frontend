@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "UI/UX Design Agent"
+  },
+  {
+    "id": 2,
+    "name": "Code Generation Agent"
+  },
+  {
+    "id": 3,
+    "name": "API Management Tool"
+  },
+  {
+    "id": 4,
+    "name": "Data Visualization Tool"
+  },
+  {
+    "id": 5,
+    "name": "Project Management Agent"
+  }
+]

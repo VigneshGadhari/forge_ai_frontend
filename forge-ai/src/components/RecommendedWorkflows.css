@@ -1,6 +1,9 @@
 /* src/components/RecommendedWorkflows.css */
 .recommended-workflows {
     padding: 20px;
+    background-color: #f9f9f9; /* Light background for the section */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .workflows-list {
@@ -10,13 +13,18 @@
 }
 
 .workflow-card {
-    background-color: #f0f0f0; /* Light gray for cards */
+    background-color: #ffffff; /* White background for cards */
     border-radius: 8px;
     padding: 15px;
     margin: 10px;
     width: 250px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.workflow-card:hover {
+    transform: scale(1.05); /* Scale effect on hover */
 }
 
 .workflow-thumbnail {
@@ -28,6 +36,7 @@
 .workflow-name {
     font-size: 1.5em;
     margin: 10px 0;
+    color: #ff6f20; /* Primary color for workflow names */
 }
 
 .workflow-description {
@@ -43,4 +52,9 @@
     color: #ffffff; /* Text color */
     border-radius: 5px;
     text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.workflow-link:hover {
+    background-color: #ffcc00; /* Accent color on hover */
 }
