@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './Checkout.css';
 
 const Checkout = ({ agents, onBack }) => {
@@ -11,9 +11,7 @@ const Checkout = ({ agents, onBack }) => {
     });
 
     const totalCost = agents.reduce((sum, agent) => {
-        const price = agent.data.features.pricing.paid;
-        const numericPrice = parseFloat(price.replace(/[^0-9.]/g, '')) || 0;
-        return sum + numericPrice;
+        return sum + agent.data.features.pricing.paid;
     }, 0);
 
     const handleSubmit = (e) => {

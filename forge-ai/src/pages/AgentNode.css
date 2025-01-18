@@ -1,0 +1,25 @@
+.agent-node {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.agent-node:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.agent-node-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-node-button {
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+}

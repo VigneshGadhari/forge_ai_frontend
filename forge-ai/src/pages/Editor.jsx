@@ -1,26 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useLocation} from 'react-router-dom';
+import {ApiService} from '../services/api';
+import {useAgents} from '../hooks/useAgents';
 import './Editor.css';
-import { allAgents } from '../data';
 import Checkout from './Checkout';
 
 const AgentDialog = ({ onClose, onSelect, existingAgents }) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedCategories, setSelectedCategories] = useState(['UI/UX Design Agents']);
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [agents, setAgents] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        fetchAgents();
+    }, []);
+
+    const fetchAgents = async () => {
+        try {
+            setLoading(true);
+            const response = await ApiService.getAgents();
+            if (response.success) {
+                setAgents(response.data);
+            } else {
+                setError('Failed to fetch agents');
+            }
+        } catch (err) {
+            setError('Error fetching agents');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleCategoryToggle = (category) => {
-        setSelectedCategories(prev => 
+        setSelectedCategories(prev =>
             prev.includes(category) ? prev.filter(c => c !== category) : [...prev, category]
         );
     };
 
-    const filteredAgents = Object.values(allAgents)
-        .flat()
-        .filter(agent => 
-            (selectedCategories.includes(agent.category) || selectedCategories.length === 0) &&
+    const filteredAgents = React.useMemo(() => {
+        const allAgents = Object.values(agents).flat();
+        return allAgents.filter(agent =>
+            (!existingAgents.includes(agent.id)) &&
+            (selectedCategories.length === 0 || selectedCategories.includes(agent.category)) &&
             (agent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            agent.description.toLowerCase().includes(searchTerm.toLowerCase()))
+                agent.description.toLowerCase().includes(searchTerm.toLowerCase()))
         );
+    }, [agents, selectedCategories, searchTerm, existingAgents]);
+
+    if (loading) {
+        return (
+            <div className="dialog-overlay">
+                <div className="agent-dialog">
+                    <div className="dialog-header">
+                        <h2>Loading agents...</h2>
+                        <button className="close-button" onClick={onClose}>×</button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="dialog-overlay">
+                <div className="agent-dialog">
+                    <div className="dialog-header">
+                        <h2>Error</h2>
+                        <button className="close-button" onClick={onClose}>×</button>
+                    </div>
+                    <div className="dialog-content">
+                        <p className="error">{error}</p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="dialog-overlay" onClick={onClose}>
@@ -37,9 +93,9 @@ const AgentDialog = ({ onClose, onSelect, existingAgents }) => {
                     className="dialog-search"
                 />
                 <div className="category-chips">
-                    {Object.keys(allAgents).map(category => (
-                        <span 
-                            key={category} 
+                    {Object.keys(agents).map(category => (
+                        <span
+                            key={category}
                             className={`chip ${selectedCategories.includes(category) ? 'selected' : ''}`}
                             onClick={() => handleCategoryToggle(category)}
                         >
@@ -49,8 +105,8 @@ const AgentDialog = ({ onClose, onSelect, existingAgents }) => {
                 </div>
                 <div className="agent-list">
                     {filteredAgents.map(agent => (
-                        <div 
-                            key={agent.id} 
+                        <div
+                            key={agent.id}
                             className="agent-list-item"
                             onClick={() => {
                                 onSelect(agent);
@@ -60,7 +116,7 @@ const AgentDialog = ({ onClose, onSelect, existingAgents }) => {
                             <div className="agent-list-item-header">
                                 <h4>{agent.name}</h4>
                                 <div className="agent-list-item-meta">
-                                    <span className="agent-rating">★ {agent.features.rating}</span>
+                                    <span className="agent-rating">★ {agent.rating}</span>
                                     <span className="agent-price">{agent.features.pricing.paid}</span>
                                 </div>
                             </div>
@@ -72,6 +128,7 @@ const AgentDialog = ({ onClose, onSelect, existingAgents }) => {
                                 <span className="feature-tag users">{agent.features.users.toLocaleString()} Users</span>
                                 <span className="feature-tag accuracy">Accuracy: {agent.features.accuracy}</span>
                             </div>
+                            <img src={agent.imageUrl} alt={agent.name} className="agent-image" />
                         </div>
                     ))}
                 </div>
@@ -194,8 +251,8 @@ const AgentNode = ({ data, onConnect, onDelete, id, onSelect }) => {
                     ))}
                 </div>
             </div>
-            <button 
-                className="connect-button" 
+            <button
+                className="connect-button"
                 onClick={(e) => {
                     e.stopPropagation();
                     onConnect(e);
@@ -209,9 +266,7 @@ const AgentNode = ({ data, onConnect, onDelete, id, onSelect }) => {
 
 const SubscriptionSummary = ({ agents, onCheckout }) => {
     const totalCost = agents.reduce((sum, agent) => {
-        const price = agent.data.features.pricing.paid;
-        const numericPrice = parseFloat(price.replace(/[^0-9.]/g, '')) || 0;
-        return sum + numericPrice;
+        return sum + agent.data.features.pricing.paid; // Directly use the numeric value
     }, 0);
 
     return (
@@ -221,7 +276,7 @@ const SubscriptionSummary = ({ agents, onCheckout }) => {
                 {agents.map(agent => (
                     <div key={agent.id} className="summary-item">
                         <span>{agent.data.name}</span>
-                        <span>{agent.data.features.pricing.paid}</span>
+                        <span>${agent.data.features.pricing.paid.toFixed(2)}</span> {/* Format as needed */}
                     </div>
                 ))}
                 <div className="summary-total">
@@ -238,6 +293,7 @@ const SubscriptionSummary = ({ agents, onCheckout }) => {
 
 const Editor = () => {
     const location = useLocation();
+    const { agents, loading, error } = useAgents();
     const [nodes, setNodes] = useState([]);
     const [showDialog, setShowDialog] = useState(false);
     const [selectedAgent, setSelectedAgent] = useState(null);
@@ -282,8 +338,8 @@ const Editor = () => {
 
     if (showCheckout) {
         return (
-            <Checkout 
-                agents={nodes} 
+            <Checkout
+                agents={nodes}
                 onBack={() => setShowCheckout(false)}
             />
         );
@@ -305,9 +361,9 @@ const Editor = () => {
                                 <span className="stat-label">Total Monthly Cost:</span>
                                 <span className="stat-value">
                                     ${nodes.reduce((sum, node) => {
-                                        const price = node.data.features.pricing.paid;
-                                        return sum + parseFloat(price.replace(/[^0-9.]/g, '')) || 0;
-                                    }, 0).toFixed(2)}
+                                    const price = node.data.features.pricing.paid; // Directly use the numeric value
+                                    return sum + price; // No need for replace
+                                }, 0).toFixed(2)}
                                 </span>
                             </span>
                         </div>
@@ -316,7 +372,7 @@ const Editor = () => {
 
                 <div className="workflow-canvas">
                     {nodes.length === 0 ? (
-                        <div 
+                        <div
                             className="empty-state"
                             onClick={() => setShowDialog(true)}
                         >
@@ -350,7 +406,7 @@ const Editor = () => {
             )}
 
             {nodes.length > 0 && (
-                <SubscriptionSummary 
+                <SubscriptionSummary
                     agents={nodes}
                     onCheckout={handleCheckout}
                 />
