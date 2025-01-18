@@ -14,17 +14,19 @@
 }
 
 .editor-header {
-    padding: 16px 24px;
-    background: white;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 32px;
+    background: linear-gradient(135deg, #ff6f20 0%, #ff8f50 100%);
+    color: white;
+    border-bottom: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .editor-header h1 {
-    color: #333;
-    margin: 0;
+    color: white;
+    font-size: 32px;
+    margin-bottom: 8px;
 }
 
 .workflow-canvas {
@@ -41,7 +43,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,31 +68,23 @@
 }
 
 .agent-dialog {
-    max-width: 700px;
-    max-height: 80vh; /* Limit height to 80% of viewport */
-    width: 90%;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
+    border-radius: 16px;
+    max-width: 600px; /* Set a max width to prevent it from being too wide */
+    margin: auto; /* Center the dialog */
+    overflow: auto; /* Allow scrolling if content overflows */
 }
 
 .dialog-header {
-    padding: 20px 24px;
-    border-bottom: 1px solid #e0e0e0;
-    background: white;
-    border-radius: 12px 12px 0 0;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+    background: #ff6f20;
+    color: white;
+    padding: 16px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
 }
 
 .dialog-header h2 {
     margin: 0;
-    color: #333;
-    font-size: 20px;
-    font-weight: 500;
 }
 
 .dialog-search {
@@ -112,11 +106,9 @@
 }
 
 .agent-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 0 24px 24px 24px;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #fff #f0f0f0; /* For Firefox */
+    max-height: 400px; /* Set a max height for the agent list */
+    overflow-y: auto; /* Allow scrolling if the list is too long */
+    padding: 16px; /* Add padding around the list */
 }
 
 /* For WebKit browsers (Chrome, Safari) */
@@ -134,27 +126,21 @@
 }
 
 .agent-list-item {
-    background: white;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     padding: 16px;
     margin-bottom: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    max-width: 600px; /* Reduced width */
+    transition: all 0.2s;
 }
 
 .agent-list-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-color: #ff6f20;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .agent-list-item-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 12px;
+    align-items: center;
 }
 
 .agent-list-item-meta {
@@ -183,12 +169,12 @@
     font-size: 12px;
     font-weight: 500;
     background: #f8f9fa;
-    color: #333;
+    color: #666;
 }
 
 .feature-tag.free {
-    background: #e6f4ea;
-    color: #1e7e34;
+    background: #e6f7ed;
+    color: #00875a;
 }
 
 .feature-tag.users {
@@ -206,7 +192,7 @@
     gap: 24px;
     margin-top: 16px;
     padding: 16px;
-    background: #f8f9fa;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
 }
 
@@ -217,25 +203,25 @@
 }
 
 .stat-label {
-    color: #666;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 14px;
 }
 
 .stat-value {
-    color: #333;
+    color: white;
     font-weight: 500;
     font-size: 16px;
 }
 
 .dialog-header {
-    background: #f8f9fa;
+    background: #ff6f20;
     padding: 24px;
     border-bottom: 1px solid #e0e0e0;
 }
 
 .dialog-header h2 {
     margin: 0;
-    color: #333;
+    color: white;
     font-size: 24px;
 }
 
@@ -332,10 +318,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    background: rgba(255, 255, 255, 0.9);
+    background: white;
     padding: 32px;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
     cursor: pointer;
+}
+
+.empty-state:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .empty-state h2 {
@@ -429,23 +422,28 @@
     align-items: center;
     position: sticky;
     top: 0;
-    background: white;
+    background: #ff6f20;
     z-index: 1;
 }
 
 .details-header h2 {
     margin: 0;
     font-size: 20px;
-    color: #333;
+    color: white;
 }
 
 .close-button {
     background: none;
     border: none;
     font-size: 24px;
-    color: #666;
+    color: white;
     cursor: pointer;
     padding: 4px;
+    opacity: 0.8;
+}
+
+.close-button:hover {
+    opacity: 1;
 }
 
 .details-content {
@@ -479,9 +477,9 @@
 .tag {
     background: #f0f0f0;
     padding: 4px 12px;
-    border-radius: 16px;
+    border-radius: 4px;
     font-size: 14px;
-    color: #333;
+    color: #666;
 }
 
 .links {
@@ -494,14 +492,14 @@
     padding: 12px;
     text-align: center;
     background: #f8f9fa;
-    color: #333;
+    color: #ff6f20;
     text-decoration: none;
     border-radius: 8px;
     transition: all 0.2s ease;
 }
 
 .link-button:hover {
-    background: #ff6f20;
+    background: #e65c00;
     color: white;
 }
 
@@ -594,13 +592,13 @@
 }
 
 .checkout-button:hover {
-    background: #e55d0f;
-    transform: translateY(-1px);
+    background: #e65c00;
+    transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 111, 32, 0.2);
 }
 
 .editor-subtitle {
-    color: #666;
+    color: rgba(255, 255, 255, 0.9);
     margin: 4px 0 0 0;
     font-size: 14px;
 }
@@ -639,11 +637,9 @@
 
 .category-chips {
     display: flex;
-    overflow-x: auto; /* Allow horizontal scrolling */
-    overflow-y: hidden; /* Prevent vertical scrolling */
-    gap: 8px;
-    margin: 16px 24px;
-    white-space: nowrap; /* Prevent wrapping */
+    flex-wrap: wrap; /* Allow chips to wrap */
+    gap: 8px; /* Space between chips */
+    padding: 16px; /* Add padding around chips */
 }
 
 /* Hide scrollbar for horizontal scrolling */
@@ -652,18 +648,17 @@
 }
 
 .chip {
-    padding: 8px 12px;
     background: #f0f0f0;
-    border-radius: 16px;
+    color: #333;
+    padding: 8px 12px; /* Add padding for better appearance */
+    border-radius: 16px; /* Make chips more rounded */
     cursor: pointer;
-    font-size: 14px;
     transition: background 0.2s;
-    color: black; /* Change text color to black */
 }
 
 .chip.selected {
     background: #ff6f20;
-    color: white; /* Change text color to white for selected chips */
+    color: white;
 }
 
 /* Search bar styles */
