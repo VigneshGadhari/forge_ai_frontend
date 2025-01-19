@@ -1,3 +1,5 @@
+import {Agent} from "./agent";
+
 export interface WorkflowAgent {
     id: string;
     category: string;
@@ -9,7 +11,11 @@ export interface Workflow {
     description: string;
     thumbnail: string;
     category: string;
-    agents: WorkflowAgent[];
+    agents: Agent[];
+}
+
+export interface AIWorkflow {
+    workflows: Workflow
 }
 
 export interface WorkflowResponse {

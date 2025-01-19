@@ -1,7 +1,7 @@
 // @ts-ignore
 import axios from 'axios';
 import {Agent, AgentResponse} from '../types/agent';
-import { Workflow, WorkflowResponse } from '../types/workflow';
+import {AIWorkflow, Workflow, WorkflowResponse} from '../types/workflow';
 
 const API_BASE_URL = 'http://172.22.0.196:4000/api';
 
@@ -44,6 +44,19 @@ export class ApiService {
             return response.data;
         } catch (error) {
             console.error('Error fetching workflows:', error);
+            throw error;
+        }
+    }
+
+    // @ts-ignore
+    static async suggestWorkflow(userRequest: string): Promise<AIWorkflow> {
+        try {
+            const response = await apiClient.post<AIWorkflow>('/suggest-agents', {
+                userRequest
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error suggesting workflow:', error);
             throw error;
         }
     }

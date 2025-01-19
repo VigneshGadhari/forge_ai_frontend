@@ -2,6 +2,8 @@
     min-height: 100vh;
     position: relative;
     background-color: #f8f9fa;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .hero-section {
@@ -9,6 +11,7 @@
     padding: 80px 0;
     text-align: center;
     color: white;
+    width: 100%;
 }
 
 .hero-content {
@@ -44,6 +47,7 @@
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .feature-card {
@@ -153,4 +157,36 @@
     color: #ff6f20;
     font-size: 18px;
     margin-right: 12px;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 32px;
+        padding: 0 15px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+        padding: 0 15px;
+    }
+
+    .featured-cards {
+        padding: 0 15px;
+    }
+
+    .feature-card {
+        padding: 20px;
+    }
+
+    .create-workflow-button {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .search-bar {
+        margin: 0 15px;
+        padding: 8px 16px;
+    }
 } 

@@ -1,7 +1,10 @@
 /* src/components/RecommendedWorkflows.css */
 .recommended-workflows {
-    padding: 40px;
+    padding: 40px 20px;
     background-color: #f9f9f9;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .recommended-workflows h2 {
@@ -14,6 +17,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -25,6 +29,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
+    width: 100%;
 }
 
 .workflow-card:hover {
@@ -84,4 +89,35 @@
 
 .workflow-button:hover {
     background: #e65c00;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .recommended-workflows {
+        padding: 20px 15px;
+    }
+
+    .workflows-list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0;
+    }
+
+    .workflow-card {
+        margin: 0;
+        width: 100%;
+    }
+
+    .workflow-content {
+        padding: 15px;
+    }
+
+    .workflow-agents {
+        gap: 6px;
+    }
+
+    .workflow-agent-tag {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
 }

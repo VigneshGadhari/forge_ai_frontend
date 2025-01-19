@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Headers';
 import Footer from '../components/Footer';
-import SearchBar from '../components/SearchBar';
+import WorkflowSearch from '../components/WorkflowSearch';
 import RecommendedWorkflows from '../components/RecommendedWorkflows';
 import './HomePage.css';
 
@@ -17,8 +17,8 @@ const HomePage = () => {
                 <section className="hero-section">
                     <div className="hero-content">
                         <h1>Build Your AI Workflow</h1>
-                        <p>Combine powerful AI agents to create custom workflows</p>
-                        <SearchBar />
+                        <p>Describe your needs and let AI suggest the perfect workflow</p>
+                        <WorkflowSearch />
                     </div>
                 </section>
 

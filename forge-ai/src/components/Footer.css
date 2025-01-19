@@ -2,6 +2,9 @@
     background: #333;
     color: white;
     padding: 60px 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -52,9 +55,33 @@
     margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid #444;
+    width: 100%;
 }
 
 .footer-bottom p {
     color: #888;
     font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-content {
+        gap: 30px;
+        padding: 0 15px;
+    }
+
+    .footer-section h4 {
+        font-size: 16px;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 8px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
 } 

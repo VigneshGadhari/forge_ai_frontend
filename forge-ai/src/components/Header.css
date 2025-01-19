@@ -4,6 +4,8 @@
     padding: 20px;
     background-color: #ff6f20; /* Primary color */
     color: #ffffff; /* Text color */
+    width: 100%; /* Ensure header takes full width */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .header-title {

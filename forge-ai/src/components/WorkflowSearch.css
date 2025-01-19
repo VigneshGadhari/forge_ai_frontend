@@ -1,0 +1,110 @@
+.workflow-search-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.search-form.focused {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(255, 111, 32, 0.2);
+}
+
+.search-form input {
+    flex: 1;
+    border: none;
+    background: none;
+    padding: 12px;
+    font-size: 18px;
+    color: #333;
+    outline: none;
+}
+
+.search-form input::placeholder {
+    color: #999;
+}
+
+.search-form button {
+    background: linear-gradient(135deg, #ff6f20 0%, #ff8f50 100%);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-form button:hover {
+    transform: rotate(15deg);
+}
+
+.search-form button i {
+    color: white;
+    font-size: 20px;
+}
+
+.loader {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .workflow-search-container {
+        padding: 10px;
+    }
+
+    .search-form {
+        padding: 6px 12px;
+    }
+
+    .search-form input {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .search-form button {
+        width: 40px;
+        height: 40px;
+    }
+} 
