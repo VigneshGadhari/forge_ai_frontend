@@ -293,20 +293,15 @@ const SubscriptionSummary = ({ agents, onCheckout }) => {
 
 const Editor = () => {
     const location = useLocation();
-    const { agents, loading, error } = useAgents();
     const [nodes, setNodes] = useState([]);
     const [showDialog, setShowDialog] = useState(false);
     const [selectedAgent, setSelectedAgent] = useState(null);
     const [showCheckout, setShowCheckout] = useState(false);
 
-    // Handle preselected agents from workflows
+    // Handle preselected nodes from workflows
     useEffect(() => {
-        if (location.state?.preselectedAgents) {
-            const preselectedNodes = location.state.preselectedAgents.map(agent => ({
-                id: `${agent.id}-${Date.now()}`,
-                data: { ...agent }
-            }));
-            setNodes(preselectedNodes);
+        if (location.state?.preselectedNodes) {
+            setNodes(location.state.preselectedNodes);
         }
     }, [location.state]);
 

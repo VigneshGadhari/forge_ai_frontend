@@ -1,29 +1,64 @@
 // src/components/RecommendedWorkflows.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import workflowsData from '../data/workflowsTech.json';
-import { allAgents } from '../data';
+import { ApiService } from '../services/api';
 import './RecommendedWorkflows.css';
 
 const RecommendedWorkflows = () => {
     const navigate = useNavigate();
+    const [workflows, setWorkflows] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        fetchWorkflows();
+    }, []);
+
+    const fetchWorkflows = async () => {
+        try {
+            setLoading(true);
+            const response = await ApiService.getWorkflows();
+            setWorkflows(response.workflows);
+        } catch (err) {
+            setError('Failed to fetch workflows');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleWorkflowClick = (workflow) => {
-        // Get full agent objects from the workflow's agent IDs
-        const selectedAgents = workflow.agents.map(agentRef => {
-            const category = allAgents[agentRef.category];
-            return category.find(agent => agent.id === agentRef.id);
-        }).filter(Boolean); // Remove any undefined agents
+        // Create nodes from the complete agent objects we get from the API
+        const preselectedNodes = workflow.agents.map(agent => ({
+            id: `${agent.id}-${Date.now()}`,
+            data: { ...agent }
+        }));
 
-        // Navigate to editor with the selected agents
-        navigate('/editor', { state: { preselectedAgents: selectedAgents } });
+        // Navigate to editor with the preselected nodes and workflow information
+        navigate('/editor', { 
+            state: { 
+                preselectedNodes,
+                workflowId: workflow.id,
+                workflowName: workflow.name,
+                workflowDescription: workflow.description,
+                workflowCategory: workflow.category
+            } 
+        });
     };
+
+    if (loading) {
+        return <div>Loading workflows...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div className="recommended-workflows">
             <h2>Recommended Workflows</h2>
             <div className="workflows-list">
-                {workflowsData.workflows.map((workflow) => (
+                {workflows.map((workflow) => (
                     <div 
                         key={workflow.id} 
                         className="workflow-card"
@@ -38,9 +73,9 @@ const RecommendedWorkflows = () => {
                             <h3 className="workflow-name">{workflow.name}</h3>
                             <p className="workflow-description">{workflow.description}</p>
                             <div className="workflow-agents">
-                                {workflow.agents.map((agent, index) => (
+                                {workflow.agents.map((agent) => (
                                     <span key={agent.id} className="workflow-agent-tag">
-                                        {allAgents[agent.category].find(a => a.id === agent.id)?.name}
+                                        {agent.name} {/* Direct access to agent name from API response */}
                                     </span>
                                 ))}
                             </div>
