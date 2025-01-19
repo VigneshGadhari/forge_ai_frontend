@@ -364,7 +364,7 @@ const Editor = () => {
         <div className="editor-layout">
             <div className="editor-main">
                 <div className="editor-header">
-                    <h1>AI Agent Workflow Builder</h1>
+                    <h1>Forge AI</h1>
                     {workflowInfo && (
                         <div className="workflow-info">
                             <h2>{workflowInfo.name}</h2>

@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <header className="header">
             <h1 className="header-title">
-                <i className="fas fa-robot"></i> AI Agent Marketplace
+                <i className="fas fa-robot"></i> Forge AI
             </h1>
             <p className="header-subtitle">Find the best AI agents for your needs</p>
         </header>
