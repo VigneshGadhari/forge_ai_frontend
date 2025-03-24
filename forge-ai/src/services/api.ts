@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Agent, AgentResponse} from '../types/agent';
 import {AIWorkflow, Workflow, WorkflowResponse} from '../types/workflow';
 
-const API_BASE_URL = 'http://172.22.0.196:4000/api';
+const API_BASE_URL = 'https://forgeai.onrender.com';
 
 const apiClient = axios.create({
     baseURL: API_BASE_URL,
