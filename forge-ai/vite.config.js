@@ -10,25 +10,6 @@ export default defineConfig({
     console: true,
     logger: {
       level: 'all',
-    },
-    allowedHosts: [
-      "localhost",
-      "alliance-solutions-u5fm.onrender.com",
-      "alliance-solutions.onrender.com",
-      "alliance-solutions-1.onrender.com/"
-    ],
-    proxy: {
-      '/api': {
-        target: 'https://backend-staging.leadbeam.ai',
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path
-      },
-      '/internal': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-        secure: false
-      }
     }
   },
   build: {
