@@ -12,6 +12,7 @@ export default defineConfig({
       level: 'all',
     }
   },
+  server.allowedHosts:{ "forge-ai-frontend-p6u2.onrender.com"},
   build: {
     outDir: 'dist',
     sourcemap: true,
