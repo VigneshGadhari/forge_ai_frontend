@@ -10,9 +10,12 @@ export default defineConfig({
     console: true,
     logger: {
       level: 'all',
-    }
+    },
+    allowedHosts: [
+      "localhost",
+      "forge-ai-frontend-p6u2.onrender.com"
+    ]
   },
-  server.allowedHosts:{ "forge-ai-frontend-p6u2.onrender.com"},
   build: {
     outDir: 'dist',
     sourcemap: true,
